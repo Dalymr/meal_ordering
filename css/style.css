@@ -1,0 +1,17 @@
+/* css/style.css */
+/* Add table styling for manage_meals.php */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+}
+table, th, td {
+    border: 1px solid #ccc;
+}
+th, td {
+    padding: 0.5em;
+    text-align: left;
+}
+img {
+    max-height: 50px;
+}
