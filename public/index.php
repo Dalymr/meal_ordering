@@ -11,12 +11,13 @@ $meals = $stmt->fetchAll();
 <div class="meals">
 <?php foreach($meals as $meal): ?>
   <div class="meal">
-    <img src="/meal_ordering/uploads/<?= $meal['image'] ?>" alt="">
-    <h3><?= $meal['name'] ?></h3>
-    <p><?= $meal['description'] ?></p>
-    <p>$<?= $meal['price'] ?></p>
+    <img src="/meal_ordering/uploads/<?= $meal['image'] ?>" alt="" style="max-width:100px;"><br>
+    <strong><?= htmlspecialchars($meal['name']) ?></strong><br>
+    <?= htmlspecialchars($meal['description']) ?><br>
+    Price: $<?= number_format($meal['price'],2) ?><br>
     <form method="POST" action="cart.php">
       <input type="hidden" name="meal_id" value="<?= $meal['id'] ?>">
+      Qty: <input type="number" name="quantity" value="1" min="1" style="width:50px;"><br>
       <button type="submit">Add to Cart</button>
     </form>
   </div>
