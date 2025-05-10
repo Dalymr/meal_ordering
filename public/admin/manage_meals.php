@@ -3,6 +3,11 @@
 require '../../includes/auth_check.php';
 require '../../config/db.php';
 
+if (!$_SESSION['user']['is_admin']) {
+    header('Location: ../index.php');
+    exit;
+}
+
 // Handle add/edit/delete
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Upload image if provided
@@ -32,6 +37,23 @@ $meals = $stmt->fetchAll();
 include '../../includes/header.php';
 ?>
 <h2>Manage Meals</h2>
+<!-- Add above <table> -->
+<form method="GET" action="manage_meals.php">
+  <input name="q" placeholder="Search meals" value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
+  <button>Search</button>
+</form>
+<?php
+// Then modify the query:
+$search = $_GET['q'] ?? '';
+if ($search) {
+    $stmt = $pdo->prepare("SELECT * FROM meals WHERE name LIKE ?");
+    $stmt->execute(["%{$search}%"]);
+} else {
+    $stmt = $pdo->query("SELECT * FROM meals");
+}
+$meals = $stmt->fetchAll();
+?>
+
 <table>
     <tr><th>ID</th><th>Name</th><th>Price</th><th>Image</th><th>Actions</th></tr>
     <?php foreach($meals as $m): ?>
