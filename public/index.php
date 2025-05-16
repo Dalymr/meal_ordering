@@ -15,6 +15,7 @@ $meals = $stmt->fetchAll();
 
 include '../includes/header.php';
 ?>
+<<<<<<< HEAD
 
 <div class="jumbotron bg-light p-5 rounded-3 mb-4">
     <div class="container">
@@ -24,6 +25,23 @@ include '../includes/header.php';
         <p>Prêt à déguster ? Parcourez notre menu et commandez en quelques clics.</p>
         <a class="btn btn-primary btn-lg" href="meals.php" role="button">Voir le menu</a>
     </div>
+=======
+<h1>Menu</h1>
+<div class="meals">
+<?php foreach($meals as $meal): ?>
+  <div class="meal">
+    <img src="/meal_ordering/uploads/<?= $meal['image'] ?>" alt="" style="max-width:100px;"><br>
+    <strong><?= htmlspecialchars($meal['name']) ?></strong><br>
+    <?= htmlspecialchars($meal['description']) ?><br>
+    Price: $<?= number_format($meal['price'],2) ?><br>
+    <form method="POST" action="cart.php">
+      <input type="hidden" name="meal_id" value="<?= $meal['id'] ?>">
+      Qty: <input type="number" name="quantity" value="1" min="1" style="width:50px;"><br>
+      <button type="submit">Add to Cart</button>
+    </form>
+  </div>
+<?php endforeach; ?>
+>>>>>>> main
 </div>
 
 <h2 class="mb-4">Nos Plats Populaires</h2>

@@ -2,14 +2,19 @@
 // public/admin/stats.php
 require '../../includes/auth_check.php';
 require '../../config/db.php';
+<<<<<<< HEAD
 
 // Check that user is admin
 if (!isset($_SESSION['user']) || !$_SESSION['user']['is_admin']) {
+=======
+if (!$_SESSION['user']['is_admin']) {
+>>>>>>> main
     header('Location: ../index.php');
     exit;
 }
 
 // Fetch stats
+<<<<<<< HEAD
 $userCount = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
 $mealCount = $pdo->query("SELECT COUNT(*) FROM meals")->fetchColumn();
 $orderCount = $pdo->query("SELECT COUNT(*) FROM orders")->fetchColumn();
@@ -299,3 +304,18 @@ include '../../includes/admin_header.php';
           pointBackgroundColor: 'rgba(78, 115, 223, 1)',
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
+=======
+$userCount  = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+$mealCount  = $pdo->query("SELECT COUNT(*) FROM meals")->fetchColumn();
+$orderCount = $pdo->query("SELECT COUNT(*) FROM orders")->fetchColumn();
+
+include '../../includes/header.php';
+?>
+<h2>Statistiques</h2>
+<ul>
+  <li>Utilisateurs: <?= $userCount ?></li>
+  <li>Repas:       <?= $mealCount ?></li>
+  <li>Commandes:   <?= $orderCount ?></li>
+</ul>
+<?php include '../../includes/footer.php'; ?>
+>>>>>>> main

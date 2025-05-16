@@ -23,6 +23,7 @@ $recentOrders = $pdo->query("
 
 include '../../includes/admin_header.php';
 ?>
+<<<<<<< HEAD
 
 <h1 class="mb-4">Tableau de bord</h1>
 
@@ -198,3 +199,13 @@ include '../../includes/admin_header.php';
 </div>
 
 <?php include '../../includes/footer.php'; ?>
+=======
+<h2>Admin Dashboard</h2>
+<ul>
+  <li><a href="manage_users.php">Gérer les utilisateurs</a></li>
+  <li><a href="manage_meals.php">Gérer les repas</a></li>
+  <li><a href="manage_orders.php">Gérer les commandes</a></li>
+  <li><a href="stats.php">Statistiques</a></li>
+</ul>
+<?php include '../../includes/footer.php'; ?>
+>>>>>>> main

@@ -536,6 +536,7 @@ footer a.text-white:hover {
   max-width: 500px;
   margin: 0 auto;
 }
+<<<<<<< HEAD
 
 /* Delete confirmation modal */
 .modal-confirm {
@@ -737,4 +738,30 @@ footer a.text-white:hover {
 .auth-form .input-group > :last-child {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+=======
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+nav {
+    background: #333;
+    padding: 1em;
+}
+nav a {
+    color: #fff;
+    margin-right: 1em;
+    text-decoration: none;
+}
+.meals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 1em;
+}
+.meal {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    width: calc(33% - 2em);
+>>>>>>> main
 }

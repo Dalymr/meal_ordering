@@ -2,6 +2,7 @@
 // public/about.php
 include '../includes/header.php';
 ?>
+<<<<<<< HEAD
 
 <div class="row">
   <div class="col-lg-8">
@@ -124,4 +125,8 @@ include '../includes/header.php';
   </div>
 </div>
 
+=======
+<h2>À propos de FoodFrenzy</h2>
+<p>Une plateforme simple et rapide pour commander vos plats préférés.</p>
+>>>>>>> main
 <?php include '../includes/footer.php'; ?>
