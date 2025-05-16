@@ -1,17 +1,740 @@
-/* css/style.css */
-/* Add table styling for manage_meals.php */
-table {
+/* Root Variables for food-inspired theme */
+:root {
+  --primary-color: #FF6B35; /* Warm tomato orange */
+  --secondary-color: #4CB944; /* Fresh herb green */
+  --accent-color: #FFD23F; /* Warm egg yellow */
+  --dark-color: #3A2E39; /* Rich chocolate brown */
+  --light-color: #F9F4F5; /* Creamy off-white */
+  --danger-color: #E63946; /* Red pepper */
+  --warning-color: #F9C74F; /* Mustard */
+  --info-color: #90BE6D; /* Avocado */
+  --success-color: #43AA8B; /* Mint */
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  --transition: all 0.3s ease;
+  --card-bg: #ffffff;
+  --light-text: #ffffff;
+  --container-width: 1200px;
+}
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+}
+
+.content-wrapper {
+  flex: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+/* Layout */
+main {
+  flex: 1;
+  padding: 2rem;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Navbar */
+.navbar {
+  background: var(--primary-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.navbar-brand a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--light-text);
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-links a {
+  color: var(--light-text);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.navbar-links a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--light-text);
+}
+
+.palestine-flag {
+  height: 24px;
+  margin-right: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.viva-palestine {
+  color: white;
+  background: linear-gradient(to right, #000000 33%, #007A3D 33%, #007A3D 66%, #CE1126 66%);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+/* Admin Navbar */
+.admin-navbar {
+  background: var(--secondary-color);
+}
+
+/* Buttons */
+button, .button, input[type="submit"], .btn {
+  background: var(--primary-color);
+  color: var(--light-text);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  text-transform: capitalize;
+}
+
+button:hover, .button:hover, input[type="submit"]:hover, .btn:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.delete-button, button[name="delete"] {
+  background: var(--danger-color);
+}
+
+.delete-button:hover, button[name="delete"]:hover {
+  background: #d32f2f;
+}
+
+.add-button, button[name="add"] {
+  background: var(--success-color);
+}
+
+.add-button:hover, button[name="add"]:hover {
+  background: #388e3c;
+}
+
+/* Forms */
+.form-container {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+input, select, textarea, .form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus, .form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(255, 107, 53, 0.25);
+}
+
+/* Fix for auth forms and input groups */
+.auth-form .input-group-text {
+  height: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid var(--primary-color);
+  min-width: 50px; /* Ensure consistent width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.auth-form .input-group {
+  margin-bottom: 1rem;
+}
+
+.auth-form .form-control {
+  height: 48px; /* Match exact height */
+  padding: 0.8rem 1rem;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-left: 0; /* Remove border overlap */
+}
+
+.auth-submit-btn {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem !important;
+  font-size: 1.1rem !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Added specific fix for mobile displays */
+@media (max-width: 576px) {
+  .auth-form .card-body {
+    padding: 1.5rem;
+  }
+  
+  .auth-submit-btn {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+}
+
+/* Tables */
+.styled-table, .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  vertical-align: middle;
+}
+
+.styled-table th, .styled-table td, .table th, .table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.styled-table th, .table th {
+  background: var(--primary-color);
+  color: var(--light-text);
+  font-weight: 600;
+  color: var(--dark-color);
+}
+
+.styled-table tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.styled-table tr {
+  transition: var(--transition);
+}
+
+.styled-table tr:hover {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  padding: 1.25rem;
+  background: var(--primary-color);
+  color: var(--light-text);
+  font-weight: 600;
+  border-bottom: none;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+/* Meals Container */
+.meals {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.meal {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.meal:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.meal img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.meal h3 {
+  padding: 1rem 1rem 0.5rem;
+  font-size: 1.25rem;
+}
+
+.meal p {
+  padding: 0 1rem;
+  color: #666;
+}
+
+.meal form {
+  padding: 1rem;
+}
+
+/* Alerts */
+.alert {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--border-radius);
+}
+
+.alert-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid var(--success-color);
+}
+
+.alert-danger {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid var(--danger-color);
+}
+
+.alert-warning {
+  background: #fff8e1;
+  color: #f57f17;
+  border-left: 4px solid var(--warning-color);
+}
+
+/* Meal Card */
+.meal-card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: white;
+  border: none;
+}
+
+.meal-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.meal-card img {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.meal-card:hover img {
+  transform: scale(1.05);
+}
+
+.meal-card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+
+.meal-card .btn {
+  margin-top: auto;
+}
+
+.meal-card .card-title {
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+}
+
+.meal-card .price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0.5rem 0;
+}
+
+.meal-card .card-text {
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+/* Price tag */
+.price-tag {
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+/* Admin dashboard stats */
+.stat-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.stat-card .stat-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.stat-card .stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  background-color: var(--dark-color);
+  color: white;
+  text-align: center;
+  padding: 2rem 0 1rem;
+  margin-top: auto;
+}
+
+footer h5 {
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+footer h5::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 40px;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+footer a.text-white {
+  transition: color 0.3s ease;
+}
+
+footer a.text-white:hover {
+  color: var(--accent-color) !important;
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+  
+  .navbar-brand {
+    margin-bottom: 1rem;
+  }
+  
+  .navbar-links {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1em;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .meals {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  }
+  
+  .styled-table {
+    display: block;
+    overflow-x: auto;
+  }
 }
-table, th, td {
-    border: 1px solid #ccc;
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-th, td {
-    padding: 0.5em;
-    text-align: left;
+
+.meal, .card {
+  animation: fadeIn 0.5s ease-out forwards;
 }
-img {
-    max-height: 50px;
+
+/* Custom styling to complement Bootstrap */
+
+/* Login/Registration forms */
+.auth-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Delete confirmation modal */
+.modal-confirm {
+  color: #636363;
+}
+
+.modal-confirm .modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+}
+
+.modal-confirm .modal-header {
+  border-bottom: none;   
+  position: relative;
+}
+
+.modal-confirm .modal-body {
+  padding: 20px 30px;
+}
+
+.modal-confirm .modal-footer {
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Profile Image Styles */
+.profile-img-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--light-color);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.profile-img-edit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-img-edit:hover {
+  background: var(--dark-color);
+}
+
+/* University project banner */
+.university-banner {
+  background: linear-gradient(135deg, var(--primary-color), #0056b3);
+  color: white;
+  padding: 10px 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.university-banner img {
+  height: 20px;
+  margin-right: 10px;
+}
+
+/* Admin and user consistent components */
+.status-badge {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.65rem;
+}
+
+/* Add Poppins font for consistency */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Auth form fixes */
+.auth-form .card-header {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 8px 8px 0 0;
+}
+
+.auth-form .card-header h2 {
+  margin: 0;
+  font-weight: 600;
+  color: white;
+}
+
+/* Input group fixes */
+.auth-form .input-group {
+  margin-bottom: 1.5rem;
+}
+
+.auth-form .input-group-text {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  width: 42px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.auth-form .form-control {
+  height: 48px; /* Set fixed height to match icon containers */
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Auth button fixes */
+.auth-form .auth-submit-btn {
+  background-color: var(--primary-color);
+  color: white; /* Ensure text is visible */
+  border: none;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+}
+
+.auth-form .auth-submit-btn:hover {
+  background-color: #e25a29;
+}
+
+/* Remove transparent text issue */
+.auth-form h2, 
+.auth-form .btn,
+.auth-form .auth-links a {
+  color: inherit;
+}
+
+/* Fix for input group icon alignment */
+.auth-form .input-group {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.auth-form .input-group-text {
+  background-color: #FF6B35;
+  border: none;
+  color: white;
+  width: 50px; /* Fixed width for icon container */
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px 0 0 5px;
+}
+
+.auth-form .form-control {
+  border-left: 0;
+  border-radius: 0 5px 5px 0;
+  height: 46px; /* Match exact height */
+  padding: 10px 15px;
+}
+
+/* Reset Bootstrap's input group styles that might be interfering */
+.auth-form .input-group > .form-control,
+.auth-form .input-group > .input-group-text {
+  position: relative;
+  flex: 1 1 auto;
+  margin-bottom: 0;
+}
+
+.auth-form .input-group-text {
+  flex: 0 0 50px; /* Fixed size, don't grow or shrink */
+}
+
+/* Ensure icon is perfectly centered */
+.auth-form .input-group-text i {
+  font-size: 18px; /* Consistent icon size */
+}
+
+/* Fix any rounded corners */
+.auth-form .input-group > :first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.auth-form .input-group > :last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
